@@ -28,5 +28,5 @@
 
 - name: dockerhost
   ip: 192.168.56.12
-  box: bertvv/fedora25
+  box: bento/fedora-28
 
