@@ -60,22 +60,17 @@ info "Allow ${docker_admin} to use Docker without sudo"
 ensure_group_exists docker
 assign_groups "${docker_admin}" docker
 
-info "Enabling services"
+info "Enabling and starting services"
 
-systemctl enable docker.service
-# The following 
-#systemctl enable cockpit.service
+systemctl enable --now firewalld.service
+systemctl enable --now docker.service
+systemctl enable --now cockpit.socket
 
 info "Configuring firewall"
 
 ensure_service_started firewalld.service
-firewall-cmd --add-port=9090/tcp --permanent
+firewall-cmd --add-service=cockpit --permanent
 firewall-cmd --reload
-
-info "Starting services"
-
-ensure_service_started docker.service
-ensure_service_started cockpit.service
 
 info "Installing aliases for managing Docker"
 
