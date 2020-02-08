@@ -28,5 +28,13 @@
 
 - name: dockerhost
   ip: 192.168.56.12
-  box: bento/fedora-28
+  box: bento/fedora-30
+  synced_folders:
+    - src: /home/bert/InfraCoding
+      dest: /home/vagrant/InfraCoding
+      options:
+        :owner: vagrant
+        :create: true
+        :group: vagrant
+        :mount_options: ['dmode=0755', 'fmode=0644']
 
